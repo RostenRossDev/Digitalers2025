@@ -1,6 +1,8 @@
+import java.util.Scanner;
+
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-public class Main {
+public class Clase1 {
 
     public static void main(String[] args) {
 
@@ -205,5 +207,37 @@ public class Main {
 
         //Operador de decremento
         contador--;
+
+
+        // Scanner para interactuar con la consola
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Ingrese un numero: ");
+        int n1 = scanner.nextInt();
+
+        System.out.println("Ingrese otro numero: ");
+        int n2 = scanner.nextInt();
+        System.out.println("La suma de " + n1 + " + " + n2 + "=" + (n1+n2));
+
+        scanner.close();
+//        System.out.println("Ingrese su nombre: ");
+//        String nombre = scanner.nextLine();
+
+//        System.out.println("Hola " + nombre);
+//
+//
+//        System.out.println("Ingrese el largo de un lado 1 del triaungulo: ");
+//        int lado1 = scanner.nextInt();
+//
+//        System.out.println("Ingrese el largo de un lado 2 del triaungulo: ");
+//        int lado2 = scanner.nextInt();
+//
+//        System.out.println("Ingrese el largo de un lado 3 del triaungulo: ");
+//        int lado3 = scanner.nextInt();
+//
+//        System.out.println("lado1 " + lado1);
+//        System.out.println("lado2 " + lado2);
+//        System.out.println("lado3 " + lado3);
     }
+
 }
