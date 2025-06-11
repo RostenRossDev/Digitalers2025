@@ -1,3 +1,5 @@
+package mains;
+
 import java.util.Scanner;
 
 public class Clase3 {
@@ -39,5 +41,6 @@ public class Clase3 {
                 System.out.println("No tengo una respuesta para su edad.");
         }
 
+        //mains.Clase5.saludar("");
     }
 }
