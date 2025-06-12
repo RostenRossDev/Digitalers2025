@@ -3,6 +3,9 @@ package integradores.clase5;
 import java.util.Scanner;
 
 public class App {
+
+    private static String exitMessage = "Gracias por utilizar el Online Backing.";
+
     public static void main(String[] args) {
 
         Integer[] tokens = new Integer[3];
@@ -16,7 +19,6 @@ public class App {
         System.out.println("Bienvenido a Online  Banking, por favor ingrese las credenciales solicitadas: ");
 
         inicio(tokens, index, leer, reTryNo, reTrySi);
-
 
         // bucle for
 
@@ -111,13 +113,22 @@ public class App {
         if(isInputValid) {
             System.out.println("\nCredenciales Correctas, Bienvenido al Online Backing.");
         }else {
-            System.out.println("\nError de credenciales... Desea intentarlo nuevamente= (S/N): ");
-            Character reTry = leer.next().charAt(0);
-            if(reTryNo.equals(reTry)){
-                System.out.println("Gracias por utilizar el Online Backing.");
-            }else if(reTrySi.equals(reTry)){
-                inicio(tokens, index, leer, reTryNo, reTrySi);
+            if(!(index < 3)){
+                System.out.println(exitMessage);
+
+            } else {
+
+                System.out.println("\nError de credenciales... Desea intentarlo nuevamente= (S/N): ");
+                Character reTry = leer.next().charAt(0);
+                if (reTryNo.equals(reTry)) {
+                    System.out.println(exitMessage);
+                } else if (reTrySi.equals(reTry)) {
+
+                    leer.nextLine();
+                    inicio(tokens, index, leer, reTryNo, reTrySi);
+                }
             }
         }
     }
+
 }
