@@ -115,20 +115,16 @@ public class App {
         }else {
             if(!(index < 3)){
                 System.out.println(exitMessage);
-
             } else {
-
                 System.out.println("\nError de credenciales... Desea intentarlo nuevamente= (S/N): ");
                 Character reTry = leer.next().charAt(0);
                 if (reTryNo.equals(reTry)) {
                     System.out.println(exitMessage);
                 } else if (reTrySi.equals(reTry)) {
-
-                    leer.nextLine();
+                    leer.nextLine(); //Para limpiar un salto de linea que se genera al ingresar el token previo
                     inicio(tokens, index, leer, reTryNo, reTrySi);
                 }
             }
         }
     }
-
 }
