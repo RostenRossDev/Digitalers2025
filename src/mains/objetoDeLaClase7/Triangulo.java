@@ -37,4 +37,8 @@ public class Triangulo extends FiguraGeometrica {
         return (this.base * this.altura) / 2D;
     }
 
+    public Double calcularArea(Double base, Double altura){
+        //Math.pow(this.largoDelLado, 2);
+        return (base * this.altura) / 2D;
+    }
 }

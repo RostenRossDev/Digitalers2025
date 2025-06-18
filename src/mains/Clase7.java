@@ -4,6 +4,9 @@ import mains.MyExceptions.DivisionPorCincoException;
 import mains.objetoDeLaClase7.Cuadrado;
 import mains.objetoDeLaClase7.Triangulo;
 
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.List;
 import java.util.Scanner;
 
 public class Clase7 {
@@ -60,6 +63,8 @@ public class Clase7 {
         System.out.println("Ingrese el dividendo: ");
         int dividendo = scanner.nextInt();
 
+
+        //Excepciones no comprobadas o excepciones en tiempo de ejecucion
         try {
           if (divisor == 5) {
               System.out.println("No hacemos nada xq la division por cinco no es posible");
@@ -83,5 +88,17 @@ public class Clase7 {
         }
 
         System.out.println("Saliendo del programa");
+
+        //Excepcion comprobadas
+        try {
+            List<String> lineas = Files.readAllLines(Paths.get("archivo.txt"));
+            for (String linea : lineas) {
+                System.out.println(linea);
+            }
+        } catch (Exception e) {
+            System.out.println("Error al leer el archivo: " + e.getMessage());
+        }finally {
+            System.out.println("Simpre me ejecuto, no importa que suceda, generalmente soy utilizado para liberar recursos");
+        }
     }
 }
