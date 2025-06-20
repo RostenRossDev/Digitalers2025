@@ -2,11 +2,15 @@ package integradores.clase6.entities;
 
 public class Client {
     private String pass;
-    private String username;
+    private String email;
+    private String name;
+    private String lastname;
+    private Integer dni;
+    private Account account;
 
-    public Client(String pass, String username) {
+    public Client(String pass, String email) {
         this.pass = pass;
-        this.username = username;
+        this.email = email;
     }
 
     public String getPass() {
@@ -17,11 +21,45 @@ public class Client {
         this.pass = pass;
     }
 
-    public String getUsername() {
-        return username;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+
+
+    public Integer getDni() {
+        return dni;
+    }
+
+    public void setDni(Integer dni) {
+        this.dni = dni;
+    }
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
     }
 }

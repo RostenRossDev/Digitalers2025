@@ -14,12 +14,15 @@ public class Home {
     private static Character reTrySi = 'S';
     private Client[] clients = new Client[20];
 
-    public void start(){
+    public void execute(){
         init();
+        start();
+    }
+
+    public void start(){
         System.out.println("Bienvenido a Online  Banking.");
         System.out.println("Para ingresar aprete 1, para registrarse aprete 2: ");
         Integer op = read.nextInt();
-        read.nextLine();
 
         switch (op){
             case 1:
@@ -36,11 +39,11 @@ public class Home {
         index++;
 
         //capturar usurio
-        String inputUser = fillStringData("\nUsuario: ", read);
+        String inputEmail = fillStringData("\nEmail: ", read);
         String inutPass = fillStringData("\nContraseña: ", read);
         Integer inputToken = fillIntegerData("\nClave token: ", read);
 
-        Boolean isValid = isValidUser(inputUser, inutPass, inputToken, validToken);
+        Boolean isValid = isValidUser(inputEmail, inutPass, inputToken, validToken);
 
         if (isValid){
             System.out.println("Se logueo con exito. Gracias por usar nuestros servicios.");
@@ -65,6 +68,21 @@ public class Home {
         System.out.println(message);
         Integer value = leer.nextInt();
         return value;
+    }
+
+    public Integer fillDniData(String message,Scanner leer){
+        //mostrar un mensaje solicitando el token
+        while (true){
+            read = new Scanner(System.in);
+            System.out.println(message);
+            Integer value = leer.nextInt();
+            String strValue  = value.toString();
+            if (strValue.length() == 8){
+                return value;
+            }else {
+                System.out.println("El dni solo tiene 8 numeros. Vuelva a intentar.");
+            }
+        }
     }
 
     public Integer generateToken(Integer[] tokens, Integer index){
@@ -108,10 +126,10 @@ public class Home {
         this.clients[0] = defaultClient;
     }
 
-    public Boolean isValidUser(String inputUser, String inutPass, Integer inputToken, Integer generagedToken){
+    public Boolean isValidUser(String inputEmail, String inutPass, Integer inputToken, Integer generagedToken){
         for (Client client : clients) {
             Boolean isTokenValid = generagedToken.equals(inputToken);
-            Boolean isUserValid = inputUser.equalsIgnoreCase(client.getUsername());
+            Boolean isUserValid = inputEmail.equalsIgnoreCase(client.getEmail());
             Boolean isValidPass = inutPass.equalsIgnoreCase(client.getPass());
 
             if (isTokenValid && isUserValid && isValidPass) {
@@ -123,13 +141,19 @@ public class Home {
 
     public void register(){
         System.out.println("Menu de registro de cliente: ");
-        String inputUser = fillStringData("\nIngrese un usuario: ", read);
+        String inputEmail = fillStringData("\nIngrese un email: ", read);
         String inutPass = fillStringData("\nIngrese una contraseña: ", read);
+        String inutName = fillStringData("\nIngrese su nombre: ", read);
+        String inputLastname = fillStringData("\nIngrese su apellido: ", read);
+        Integer inputDni = fillDniData("\nIngrese su DNI sin puntos: ", read);
 
         int index = 0;
         for (Client client: clients){
             if (client == null){
-                Client newClient = new Client(inutPass, inputUser);
+                Client newClient = new Client(inutPass, inputEmail);
+                newClient.setDni(inputDni);
+                newClient.setName(inutName);
+                newClient.setLastname(inputLastname);
                 clients[index] = newClient;
                 System.out.println("Se registro exitosamente, sera redirigido al menu de login.");
                 start();
