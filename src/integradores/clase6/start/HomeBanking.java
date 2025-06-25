@@ -3,6 +3,7 @@ package integradores.clase6.start;
 import integradores.clase6.entities.Client;
 import integradores.clase6.util.Menu;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class HomeBanking {
@@ -25,7 +26,10 @@ public class HomeBanking {
         System.out.println("2)para registrarse aprete 2. ");
         System.out.println("3)para cerrar el programa aprete 3.");
         System.out.println();
-        Integer op = read.nextInt();
+        String opStr = read.nextLine();
+        Integer op = parseInput(opStr);
+
+
 
         switch (op){
             case 1:
@@ -173,5 +177,16 @@ public class HomeBanking {
             }
             index++;
         }
+    }
+
+    private Integer parseInput(String opStr){
+        try {
+            return Integer.parseInt(opStr);
+            // Usás 'op' normalmente acá
+        } catch (NumberFormatException e) {
+            System.out.println("El valor ingresado \"" + opStr + "\" no es válido. Solo se aceptan números.");
+            start(); // Volvés a pedir el valor
+        }
+        return null;
     }
 }
