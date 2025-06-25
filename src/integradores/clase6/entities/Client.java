@@ -11,6 +11,7 @@ public class Client {
     public Client(String pass, String email) {
         this.pass = pass;
         this.email = email;
+        account = new Account();
     }
 
     public String getPass() {

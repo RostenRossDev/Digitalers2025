@@ -1,18 +1,18 @@
 package integradores.clase6.start;
 
 import integradores.clase6.entities.Client;
+import integradores.clase6.util.Menu;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
-public class Home {
+public class HomeBanking {
     private static String exitMessage = "Gracias por utilizar el Online Backing.";
     private Integer[] tokens = new Integer[100];
     private Integer index = 0;
     private Scanner read = new Scanner(System.in);
     private static Character reTryNo = 'N';
     private static Character reTrySi = 'S';
-    private Client[] clients = new Client[20];
+    public static  Client[] clients = new Client[20];
 
     public void execute(){
         init();
@@ -21,20 +21,31 @@ public class Home {
 
     public void start(){
         System.out.println("Bienvenido a Online  Banking.");
-        System.out.println("Para ingresar aprete 1, para registrarse aprete 2: ");
+        System.out.println("1)Para ingresar aprete 1.");
+        System.out.println("2)para registrarse aprete 2. ");
+        System.out.println("3)para cerrar el programa aprete 3.");
+        System.out.println();
         Integer op = read.nextInt();
 
         switch (op){
             case 1:
-                this.login();
+                String loginEmail = this.login();
+                if(loginEmail != null){
+                    Menu.accountMenu(loginEmail, this);
+                }
                 break;
             case 2:
                 this.register();
                 break;
+            case 3:
+                System.exit(0);
+            default:
+                System.out.println("La opción \" " + op + "\" no es valida.");
+                this.start();
         }
     }
 
-    public Boolean login(){
+    public String login(){
         Integer validToken =  generateToken(tokens, index);
         index++;
 
@@ -47,12 +58,13 @@ public class Home {
 
         if (isValid){
             System.out.println("Se logueo con exito. Gracias por usar nuestros servicios.");
+            return inputEmail;
         } else {
             read = new Scanner(System.in);
             System.out.println("Credenciales incorrectos.");
             reTry();
+            return null;
         }
-        return isValid;
     }
 
     public String fillStringData(String message,Scanner read){
