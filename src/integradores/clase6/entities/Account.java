@@ -3,6 +3,8 @@ package integradores.clase6.entities;
 import integradores.clase6.exceptions.NotExistClientException;
 import integradores.clase6.start.HomeBanking;
 import integradores.clase6.util.GenerateRandomNumber;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Objects;
 
@@ -24,23 +26,6 @@ public class Account {
         this.balance -= value;
         return  this.balance;
     }
-
-    public Long getCbu() {
-        return cbu;
-    }
-
-    public void setCbu(Long cbu) {
-        this.cbu = cbu;
-    }
-
-    public Double getBalance() {
-        return balance;
-    }
-
-    public void setBalance(Double balance) {
-        this.balance = balance;
-    }
-
 
     public static Double withdraw(Double value, String email) throws NotExistClientException {
         Client client = null;
@@ -88,5 +73,26 @@ public class Account {
             }
         }
         return null;
+    }
+
+    public Long getCbu() {
+        return cbu;
+    }
+
+    public void setCbu(Long cbu) {
+        this.cbu = cbu;
+    }
+
+    public Double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(Double balance) {
+        this.balance = balance;
+    }
+
+    @Override
+    public String toString() {
+        return "cbu: " + this.cbu + ", balance: " + this.balance;
     }
 }

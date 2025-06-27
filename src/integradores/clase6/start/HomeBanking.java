@@ -24,12 +24,11 @@ public class HomeBanking {
         System.out.println("Bienvenido a Online  Banking.");
         System.out.println("1)Para ingresar aprete 1.");
         System.out.println("2)para registrarse aprete 2. ");
-        System.out.println("3)para cerrar el programa aprete 3.");
+        System.out.println("3)Para recuperar sus credenciales ingrese 3.");
+        System.out.println("4)para cerrar el programa aprete 4.");
         System.out.println();
         String opStr = read.nextLine();
         Integer op = parseInput(opStr);
-
-
 
         switch (op){
             case 1:
@@ -42,6 +41,9 @@ public class HomeBanking {
                 this.register();
                 break;
             case 3:
+                Client.recoveryCredential(this);
+                this.start();
+            case 4:
                 System.exit(0);
             default:
                 System.out.println("La opción \" " + op + "\" no es valida.");
@@ -129,6 +131,7 @@ public class HomeBanking {
         Character reTry = read.next().toUpperCase().charAt(0);
         if (reTryNo.equals(reTry)) {
             System.out.println(exitMessage);
+            start();
         } else if (reTrySi.equals(reTry)) {
             read = new Scanner(System.in);
             start();
@@ -143,13 +146,16 @@ public class HomeBanking {
     }
 
     public Boolean isValidUser(String inputEmail, String inutPass, Integer inputToken, Integer generagedToken){
-        for (Client client : clients) {
-            Boolean isTokenValid = generagedToken.equals(inputToken);
-            Boolean isUserValid = inputEmail.equalsIgnoreCase(client.getEmail());
-            Boolean isValidPass = inutPass.equalsIgnoreCase(client.getPass());
 
-            if (isTokenValid && isUserValid && isValidPass) {
-                return Boolean.TRUE;
+        for (Client client : clients) {
+            if (client != null){
+                Boolean isTokenValid = generagedToken.equals(inputToken);
+                Boolean isUserValid = inputEmail.equalsIgnoreCase(client.getEmail());
+                Boolean isValidPass = inutPass.equalsIgnoreCase(client.getPass());
+
+                if (isTokenValid && isUserValid && isValidPass) {
+                    return Boolean.TRUE;
+                }
             }
         }
         return Boolean.FALSE;

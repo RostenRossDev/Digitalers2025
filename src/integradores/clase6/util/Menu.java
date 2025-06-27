@@ -1,6 +1,7 @@
 package integradores.clase6.util;
 
 import integradores.clase6.entities.Account;
+import integradores.clase6.entities.Client;
 import integradores.clase6.exceptions.NotExistClientException;
 import integradores.clase6.start.HomeBanking;
 
@@ -16,7 +17,9 @@ public class Menu {
         System.out.println("Para extraer dinero ingrese 2.");
         System.out.println("Para consultar su saldo ingrese 3.");
         System.out.println("Para volver al inicio del programa ingrese 4.");
-        System.out.println("Para cerrar el programa ingrese 5.");
+        System.out.println("Para editar sus credenciales ingrese 5.");
+        System.out.println("Para eliminar su cuenta ingrese 6.");
+        System.out.println("Para cerrar el programa ingrese 7.");
 
         int op = input.nextInt();
         switch (op){
@@ -25,6 +28,7 @@ public class Menu {
                 break;
             case 2:
                 accountWithdrawLogic(loginEmail, home);
+                home.start();
                 break;
             case 3:
                 printBalance(loginEmail, home);
@@ -33,6 +37,12 @@ public class Menu {
                 home.start();
                 break;
             case 5:
+                Client.updateCredential(loginEmail,  home);
+                break;
+            case 6:
+                Client.deletCounnt(loginEmail,  home);
+                break;
+            case 7:
                 System.exit(0);
                 break;
             default:
