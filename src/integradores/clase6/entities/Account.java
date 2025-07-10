@@ -9,10 +9,12 @@ import lombok.Setter;
 import java.util.Objects;
 
 public class Account {
+    private String typo;
     private Long cbu;
     private Double balance;
 
     public Account() {
+        this.typo="ARS";
         this.balance = 0D;
         this.cbu = GenerateRandomNumber.generateCBU();
     }
@@ -23,8 +25,11 @@ public class Account {
     }
 
     public Double withdraw(Double value){
-        this.balance -= value;
-        return  this.balance;
+        if (this.balance - value > 0){
+            this.balance -= value;
+            return  this.balance;
+        }
+        return this.balance;
     }
 
     public static Double withdraw(Double value, String email) throws NotExistClientException {
@@ -87,7 +92,10 @@ public class Account {
         return balance;
     }
 
-    public void setBalance(Double balance) {
+    public void setBalance(Double balance) throws Exception {
+        if (balance < 0){
+            throw new Exception("El balance no puede ser negativo!!!!!!");
+        }
         this.balance = balance;
     }
 

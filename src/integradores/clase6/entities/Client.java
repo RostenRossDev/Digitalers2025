@@ -3,6 +3,8 @@ package integradores.clase6.entities;
 import integradores.clase6.start.HomeBanking;
 import integradores.clase6.util.Menu;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -12,12 +14,13 @@ public class Client {
     private String name;
     private String lastname;
     private Integer dni;
-    private Account account;
+    private List<Account> accounts = new ArrayList<>();
 
     public Client(String pass, String email) {
         this.pass = pass;
         this.email = email;
-        account = new Account();
+        Account ac = new Account();
+        this.accounts.add(ac);
     }
 
     public String getPass() {
@@ -63,11 +66,12 @@ public class Client {
     }
 
     public Account getAccount() {
-        return account;
+        return accounts.get(0);
     }
 
     public void setAccount(Account account) {
-        this.account = account;
+        this.accounts.add(0, account);
+        this.accounts.remove(1);
     }
 
     public static void recoveryCredential( HomeBanking home){

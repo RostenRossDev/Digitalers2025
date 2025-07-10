@@ -7,11 +7,14 @@ import java.util.Scanner;
 
 public class App {
 
+
     private static String exitMessage = "Gracias por utilizar el Online Backing.";
 
     public static void main(String[] args) {
-        HomeBanking home = new HomeBanking();
-        home.execute();
+//        HomeBanking home = new HomeBanking();
+//        home.execute();
+        Client c = new Client("asdas", "asdas");
+
     }
 
 
