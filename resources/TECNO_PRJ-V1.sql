@@ -53,6 +53,104 @@ SET Nombre = 'iPhone 5', Precio = 499.99, Marca = 'Apple', Categoria =
 'Smartphone', Stock = 500, Disponible = false;
 
 
+
+
+
+--#################### Integrador n° 11: Consultas solbre la BASE DE DATOS TECNO_PRJ ##########################
 --Modificar columna precio a monto y agregarle restriccion de signo
-ALTER TABLE articulos PRECIO MONTO DECIMAL(10,2)
-ALTER TABLE articulos MODIFY stock INT UNSIGNED NOT NULL;
+ALTER TABLE articulos MODIFY PRECIO INT UNSIGNED NOT NULL;
+ALTER TABLE articulos CHANGE NOMBRE NOMBRE VARCHAR(75);
+ALTER TABLE facturas MODIFY MONTO DECIMAL(10,2) UNSIGNED NOT NULL;
+ALTER TABLE articulos MODIFY STOCK int(11) UNSIGNED NOT NULL;
+ALTER TABLE clientes CHANGE NOMBRE NOMBRE VARCHAR(30) NOT NULL;
+ALTER TABLE clientes CHANGE APELLIDO APELLIDO VARCHAR(35) NOT NULL;
+ALTER TABLE clientes CHANGE COMENTARIOS OBSERVACIONES VARCHAR(255);
+
+-- Creamos la tabla localidad
+
+CREATE TABLE IF NOT EXISTS localidad (
+    LOCALIDAD_ID INT AUTO_INCREMENT PRIMARY KEY,
+    NOMBRE VARCHAR(100) NOT NULL,
+    CP INT NOT NULL,
+    PROVINCIA VARCHAR(100) NOT NULL
+);
+
+-- creamos la relacion usuario-localidad
+
+ALTER TABLE clientes ADD COLUMN LOCALIDAD_ID INT;
+
+ALTER TABLE clientes ADD CONSTRAINT fk_localidad FOREIGN KEY (LOCALIDAD_ID) REFERENCES localidad(LOCALIDAD_ID);
+
+-- INSERTAR REGISTROS EN LA TABLA LOCALIDAD
+
+INSERT INTO LOCALIDAD (NOMBRE, CP, PROVINCIA) VALUES
+('CABA', 1000, 'Buenos Aires'),
+('Rosario', 2000, 'Santa Fe'),
+('Córdoba', 5000, 'Córdoba'),
+('San Miguel de Tucumán', 4000, 'Tucumán'),
+('Neuquén', 8300, 'Neuquén');
+
+
+--INSERTAR REGISTROS EN LA TABLA CLIENTES
+
+INSERT INTO CLIENTES (NOMBRE, APELLIDO, CUIT, DIRECCION, LOCALIDAD_ID, OBSERVACIONES) VALUES
+('Santiago', 'González', '23-24582359-9', 'Uriburu 558 - 7ºA', 3, NULL),
+('Gloria', 'Fernández', '23-35965852-5', 'Constitución 323', 1, 'GBA'),
+('Gonzalo', 'López', '23-33587416-0', 'Arias 2624', 5, 'GBA'),
+('Carlos', 'García', '23-42321230-9', 'Pasteur 322 - 2ºC', 2, 'VIP'),
+('Micaela', 'Altieri', '23-22885566-5', 'Santamarina 1255', 4, 'GBA');
+
+-- INSERTAR ARTICULOS EN LA TABLA ARTICULOS
+INSERT INTO articulos (ARTICULO_ID, NOMBRE, PRECIO, STOCK)
+VALUES
+(95, 'Webcam con Micrófono Plug & Play', 513.35, 39),
+(157, 'Apple AirPods Pro', 979.75, 152),
+(335, 'Lavasecarropas Automático Samsung', 1589.50, 12),
+(411, 'Gloria Trevi / Gloria / CD+DVD', 2385.70, 2);
+
+--INSERTAR FACTURAS EN LA TABLA FACTURAS
+INSERT INTO detalles (DETALLE_ID, ARTICULO_ID, FACTURA_ID, CANTIDAD) VALUES
+(1, 95, 1, 2),
+(2, 157, 1, 1),
+(3, 335, 2, 3),
+(4, 411, 2, 1),
+(5, 95, 3, 1),
+(6, 157, 3, 2),
+(7, 335, 4, 1),
+(8, 411, 4, 1),
+(9, 95, 5, 2),
+(10, 157, 5, 3),
+(11, 335, 1, 1),
+(12, 411, 2, 2),
+(13, 95, 3, 1),
+(14, 157, 4, 1),
+(15, 335, 5, 1);
+
+-- Para duplicar tablas
+CREATE TABLE localidad_COPIA
+SELECT * FROM localidad;
+
+-- Para duplicar tablas APLICANDO algun fitro
+ CREATE TABLE localidad_COPIA_DE_LA_COPIA
+ SELECT * FROM localidad where LOCALIDAD_ID < 3;
+
+ --Para actualizar registros existentes
+
+ UPDATE clientes SET OBSERVACIONES = 'usando consulta update' WHERE CLIENTE_ID = 3;
+
+ --Para eleiminar registros
+
+ DELETE FROM clientes WHERE id = 11;
+
+ DELETE FROM clientes WHERE fecha_nacimiento < '1980-01-01';
+
+ DELETE FROM clientes;
+
+-- Para agregar la tabla categoria en la base de datos tecno_prj
+
+CREATE TABLE if NOT EXISTS CATEGORIA (
+ categoria_id INT not NULL,
+ nombre VARCHAR(50) NOT NULL,
+ descripcion VARCHAR(255),
+ PRIMARY KEY (categoria_id)
+);
