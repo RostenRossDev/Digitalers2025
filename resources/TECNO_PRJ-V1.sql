@@ -154,3 +154,29 @@ CREATE TABLE if NOT EXISTS CATEGORIA (
  descripcion VARCHAR(255),
  PRIMARY KEY (categoria_id)
 );
+
+ALTER TABLE tecno_prj.categoria MODIFY COLUMN categoria_id int(11) auto_increment NOT NULL;
+
+
+-- Insertar datos en la tabla categorias
+
+
+INSERT INTO CATEGORIA (Nombre, Descripcion) VALUES
+('Componentes', 'Procesadores, memorias RAM, placas madre y otros componentes internos.'),
+('Periféricos', 'Teclados, mouse, cámaras web y dispositivos de entrada/salida.'),
+('Software', 'Aplicaciones, sistemas operativos y licencias de software.'),
+('Redes', 'Routers, switches, cables de red y otros equipos de conectividad.'),
+('Almacenamiento', 'Discos duros, SSD, memorias USB y soluciones de backup.'),
+('Impresión', 'Impresoras láser, inyección de tinta, escáneres y consumibles.'),
+('Monitores', 'Pantallas LED, monitores gamer y pantallas profesionales.'),
+('Gaming', 'Accesorios para gaming como auriculares, sillas y consolas.'),
+('Movilidad', 'Laptops, notebooks, tablets y accesorios móviles.'),
+('Energía', 'UPS, baterías externas, estabilizadores y protectores de tensión.');
+
+-- Crear columna categoria id en articulos y se setea por defecto valor 1
+
+
+ALTER TABLE tecno_prj.ARTICULOS
+ADD COLUMN CATEGORIA_ID INT DEFAULT 1,
+ADD CONSTRAINT fk_articulo_categoria
+FOREIGN KEY (CATEGORIA_ID) REFERENCES CATEGORIA(CATEGORIA_ID);
