@@ -180,3 +180,74 @@ ALTER TABLE tecno_prj.ARTICULOS
 ADD COLUMN CATEGORIA_ID INT DEFAULT 1,
 ADD CONSTRAINT fk_articulo_categoria
 FOREIGN KEY (CATEGORIA_ID) REFERENCES CATEGORIA(CATEGORIA_ID);
+
+--########################################################################################################
+--1. FROM facturas f
+--Se toma la tabla facturas como punto de partida, y se le da el alias f.
+--
+--2. JOIN detalles d ON f.FACTURA_ID = d.FACTURA_ID
+--Se une la tabla facturas con la tabla detalles, relacionando cada factura con sus líneas de detalle (los productos comprados en esa factura).
+--
+--3. JOIN articulos a ON d.ARTICULO_ID = a.ARTICULO_ID
+--Ahora se une la tabla detalles con articulos, para obtener información como el nombre y precio del producto comprado.
+--
+--4. WHERE f.CLIENTE_ID = 5
+--Se filtra para considerar únicamente las facturas del cliente con CLIENTE_ID = 5.
+--
+--5. SELECT ...
+--Se seleccionan los siguientes datos:
+--
+--a.ARTICULO_ID: el ID del artículo.
+--
+--a.NOMBRE: el nombre del artículo.
+--
+--SUM(d.CANTIDAD) AS cantidad: la cantidad total comprada de ese artículo por el cliente (sumando todas las facturas).
+--
+--(SUM(d.CANTIDAD) * a.PRECIO) AS total_gastado: el total gastado en ese producto por el cliente. Se multiplica la cantidad total comprada por el precio del producto.
+--
+--⚠️ Importante: Esto asume que el PRECIO del producto no cambió entre compras. Si el precio pudo haber variado entre facturas, esta fórmula podría no ser precisa. En ese caso deberías usar el precio registrado en el detalle de cada factura (si lo tenés, como d.PRECIO_UNITARIO por ejemplo).
+--
+--6. GROUP BY a.NOMBRE
+--Agrupa los resultados por nombre del artículo, es decir, junta todas las compras del mismo producto para ese cliente.
+--
+--🔍 Lo ideal sería agrupar también por a.ARTICULO_ID, no solo por nombre, en caso de que existan artículos con nombres iguales. Podrías hacer:
+--
+--sql
+--Copiar
+--Editar
+--GROUP BY a.ARTICULO_ID, a.NOMBRE;
+
+
+SELECT a.ARTICULO_ID, a.NOMBRE, sum(d.CANTIDAD) as cantidad,  (sum(d.CANTIDAD) * a.precio)
+ as total_gastado FROM facturas f
+JOIN detalles d ON f.FACTURA_ID = d.FACTURA_ID
+JOIN articulos a ON d.ARTICULO_ID = a.ARTICULO_ID
+WHERE f.CLIENTE_ID = 5 GROUP by a.NOMBRE;
+--########################################################################################################
+
+
+SELECT DISTINCT c.CLIENTE_ID, c.NOMBRE, c.APELLIDO, c.LOCALIDAD_ID
+FROM clientes c
+JOIN facturas f ON c.CLIENTE_ID = f.CLIENTE_ID
+WHERE f.FECHA >= CURDATE() - INTERVAL 1 YEAR;
+
+--#########################################################
+SELECT
+    a.ARTICULO_ID,
+    a.NOMBRE,
+    SUM(d.CANTIDAD) AS total_unidades_vendidas,
+    a.PRECIO,
+    SUM(d.CANTIDAD * a.PRECIO) AS total_vendido
+FROM
+    detalles d
+JOIN
+    articulos a ON d.ARTICULO_ID = a.ARTICULO_ID
+GROUP BY
+    a.ARTICULO_ID
+HAVING
+    total_vendido < 50000;
+
+    --##############################################
+    select * FROM articulos a
+    where a.precio > (select avg(a.PRECIO) from articulos a)
+
