@@ -251,3 +251,163 @@ HAVING
     select * FROM articulos a
     where a.precio > (select avg(a.PRECIO) from articulos a)
 
+--################################################
+SELECT DISTINCT c.CLIENTE_ID, c.NOMBRE, c.APELLIDO, c.CUIT, c.OBSERVACIONES, c.DIRECCION,
+c.LOCALIDAD_ID, c.CREATION_DATE FROM clientes c
+JOIN facturas f ON c.CLIENTE_ID = f.CLIENTE_ID
+JOIN detalles d ON f.FACTURA_ID = d.FACTURA_ID
+where d.ARTICULO_ID in
+(select a.ARTICULO_ID FROM articulos a
+    where a.precio > (select avg(a.PRECIO) from articulos a))
+
+--######################################  INNER JOIN
+SELECT * FROM facturas f INNER JOIN detalles d ON f.FACTURA_ID = d.FACTURA_ID;
+
+--######################################  LEFT JOIN
+SELECT * FROM facturas f LEFT JOIN detalles d ON f.FACTURA_ID = d.FACTURA_ID;
+
+--######################################  RIGHT JOIN
+SELECT * FROM facturas f RIGHT JOIN detalles d ON f.FACTURA_ID = d.FACTURA_ID;
+
+
+--######################################  integrador etapa 4
+----------------------------------------------------------------
+select a.NOMBRE AS producto, c.nombre AS categoria from articulos a JOIN categoria c ON c.categoria_id = a.CATEGORIA_ID
+
+----------------------------------------------------------------
+select c.NOMBRE as cliente_nombre, c.APELLIDO as cliente_apellido, c.DIRECCION as cliente_direccion, l.NOMBRE as localidad from clientes c LEFT JOIN localidad l ON c.LOCALIDAD_ID = l.LOCALIDAD_ID;
+
+----------------------------------------------------------------
+select c.NOMBRE as cliente_nombre, c.APELLIDO as cliente_apellido, c.DIRECCION as cliente_direccion, l.NOMBRE as localidad from clientes c
+LEFT JOIN localidad l ON c.LOCALIDAD_ID = l.LOCALIDAD_ID WHERE C.APELLIDO like 'G%' AND l.PROVINCIA LIKE 'Buenos Aires'
+
+----------------------------------------------------------------
+(
+    SELECT
+        a.ARTICULO_ID, a.NOMBRE,  a.STOCK, a.PRECIO, c.nombre AS categoria,  'Destacado' AS tipo
+    FROM articulos a
+    JOIN categoria c
+        ON a.CATEGORIA_ID = c.categoria_id
+    WHERE a.STOCK > 50
+)
+UNION ALL
+(
+    SELECT a.ARTICULO_ID, a.NOMBRE, a.STOCK, a.PRECIO, c.nombre AS categoria, 'Normal' AS tipo
+    FROM articulos a
+    JOIN categoria c
+        ON a.CATEGORIA_ID = c.categoria_id
+    WHERE a.STOCK <= 50
+)
+ORDER BY tipo ASC, nombre ASC;
+----------------------------------------------------------------
+SELECT * FROM facturas f
+LEFT JOIN detalles d
+    ON f.FACTURA_ID = d.FACTURA_ID;
+
+---------------------------------------------------------------
+SELECT f.FACTURA_ID, f.LETRA, f.NUMERO, f.FECHA, f.MONTO, d.CANTIDAD, d.ARTICULO_ID, a.NOMBRE
+/*, COUNT(*) AS cantidad_items*/
+FROM facturas f
+LEFT JOIN detalles d
+    ON f.FACTURA_ID = d.FACTURA_ID
+INNER JOIN articulos a
+    ON d.ARTICULO_ID = a.ARTICULO_ID
+/*GROUP BY f.FACTURA_ID*/
+order by f.FACTURA_ID;
+
+----------------------------------------------------------------
+select f.* from clientes c
+LEFT JOIN facturas f
+    ON f.CLIENTE_ID = c.CLIENTE_ID
+where c.APELLIDO LIKE 'García'
+
+----------------------------------------------------------------
+select a.* from clientes c
+
+LEFT JOIN facturas f
+	ON f.CLIENTE_ID = c.CLIENTE_ID
+INNER JOIN detalles d
+	ON f.FACTURA_ID = d.FACTURA_ID
+INNER JOIN articulos a
+	ON d.ARTICULO_ID = a.ARTICULO_ID
+
+where c.APELLIDO LIKE 'López'
+
+--############################### TERMINO EL INTEGRADOR 4
+
+SELECT * FROM articulos a WHERE a.ARTICULO_ID IN
+(SELECT detalles.ARTICULO_ID FROM facturas
+	INNER JOIN detalles
+ 		ON facturas.FACTURA_ID = detalles.FACTURA_ID
+);
+
+------------------------------------------------------------
+SELECT NOMBRE, PRECIO,
+CASE WHEN PRECIO < 20 THEN 'BARATO'
+WHEN PRECIO BETWEEN 20 AND 40 THEN 'EQUILIBRADO'
+ELSE 'CARO'
+END as categoria
+FROM articulos;
+
+------------------------------------------------------------
+SELECT CONCAT('Sr./a. ', NOMBRE, ' ', APELLIDO) as 'Nombre completo' FROM clientes;
+
+SELECT CONCAT_WS(',', nombre, apellido, cuit, direccion) as 'Datos Completos' FROM clientes;
+
+SELECT  UPPER(CONCAT_WS(',', nombre, apellido, cuit, direccion)) as 'Datos Completos' FROM clientes;
+
+SELECT  LOWER(CONCAT_WS(',', nombre, apellido, cuit, direccion)) as 'Datos Completos' FROM clientes;
+
+SELECT CONCAT(LEFT(nombre, 1), '.') As Inicial_nombre FROM clientes;
+
+SELECT RIGHT(cuit, 1) as 'Dígito verificador' FROM clientes;
+
+SELECT SUBSTRING(cuit, 4, 8) as 'DNI' FROM clientes;
+
+SELECT direccion, CHAR_LENGTH(direccion) as 'Cantidad de caracteres' FROM clientes;
+
+SELECT direccion, LOCATE('on',direccion) 'Posición' from clientes;
+
+SELECT LTRIM(direccion) Direccion_Correcta from clientes;
+
+SELECT RTRIM(direccion) Direccion_Correcta from clientes;
+
+SELECT TRIM(direccion) Direccion_Correcta from clientes;
+
+SELECT REPLACE(direccion, '7º', 'Septimo ') Direccion from clientes;
+
+alter table facturas change FECHA FECHA timestamp
+
+SELECT YEAR(fecha) as 'Año' FROM facturas;
+
+SELECT MONTH(fecha) as 'Mes' FROM facturas;
+
+SELECT DAY(fecha) as 'DIA' FROM facturas;
+
+SELECT HOUR(fecha) as 'HORA' FROM facturas;
+
+SELECT CURTIME() as 'HORA ACTUAL';  /*Obtener hora minutos y segundos actuales*/
+
+SELECT DATEDIFF('2020-06-30','2020-01-01') as 'DIAS TRANSCURRIDOS'; /*calcula la diferencia de dias entre 2 fechas*/
+
+SELECT DATEDIFF(CURDATE(), FECHA ) as 'DIAS TRANSCURRIDOS' FROM facturas;
+
+SELECT TIMESTAMPDIFF(MONTH, '2020-01-01', '2020-06-30') as 'MESES TRANSCURRIDOS';
+
+SELECT TIMESTAMPDIFF(MONTH, FECHA, CURDATE()) as 'MESES TRANSCURRIDOS' FROM facturas; /*Calcula la cantidad de meses de diferencia entre 2 fechas*/
+
+SELECT TIMESTAMPDIFF(YEAR, FECHA, CURDATE()) as 'MESES TRANSCURRIDOS' FROM facturas;/*Calcula la cantidad de años de diferencia entre 2 fechas*/
+
+
+SELECT
+	case
+		when DAYNAME(FECHA) like 'Monday' then 'Lunes'
+		when DAYNAME(FECHA) like 'Tuesday' then 'Martes'
+		when DAYNAME(FECHA) like 'Wednesday' then 'Miercoles'
+		when DAYNAME(FECHA) like 'Thursday' then 'Jueves'
+		when DAYNAME(FECHA) like 'Friday' then 'Viernes'
+		when DAYNAME(FECHA) like 'Saturday' then 'Sabado'
+		else 'Domingo'
+end as 'Nombre del día'
+
+ FROM facturas;
