@@ -411,3 +411,90 @@ SELECT
 end as 'Nombre del día'
 
  FROM facturas;
+
+
+ SELECT DAYOFWEEK(CURDATE()) as 'Número del día de la semana';
+
+ SELECT DAYOFYEAR(CURDATE()) as 'Día del año';
+
+ SELECT MONTHNAME(CURDATE()) as 'Nombre del mes';
+
+ select case
+ 		when DAYNAME(FECHA) like 'January' then 'Enero'
+		when DAYNAME(FECHA) like 'February' then 'Febreo'
+		when DAYNAME(FECHA) like 'March' then 'Marzo'
+		when DAYNAME(FECHA) like 'April' then 'Abril'
+		when DAYNAME(FECHA) like 'May' then 'Mayo'
+		when DAYNAME(FECHA) like 'June' then 'Junio'
+		when DAYNAME(FECHA) like 'July' then 'Julio'
+		when DAYNAME(FECHA) like 'August' then 'Agosto'
+		when DAYNAME(FECHA) like 'September' then 'Septiembre'
+		when DAYNAME(FECHA) like 'October' then 'Octubre'
+		when DAYNAME(FECHA) like 'November' then 'Noviembre'
+		else 'Diciembre'
+	end
+ as 'Nombre del mes'  FROM facturas;
+
+
+
+/*Integrador parte 1*/
+
+select c.CLIENTE_ID , c.LOCALIDAD_ID, CONCAT(C.NOMBRE, '_', C.APELLIDO) as NOMBRE_COMPLETO from clientes c
+
+
+select c.CLIENTE_ID , c.LOCALIDAD_ID, CONCAT_WS('-', C.NOMBRE,  C.APELLIDO) as NOMBRE_COMPLETO from clientes c
+
+select c.CLIENTE_ID , c.LOCALIDAD_ID, UPPER(C.NOMBRE) as NOMBRE from clientes c
+
+select c.CLIENTE_ID , c.LOCALIDAD_ID, UPPER(C.NOMBRE) as NOMBRE, SUBSTR(C.NOMBRE, 1,1)  as INICIAL from clientes c
+
+select *, ROUND((f.MONTO * 0.21), 2) as IVA from facturas f
+
+select *, ROUND((f.MONTO * 0.21), 2) as IVA, (F.MONTO + ROUND((f.MONTO * 0.21), 2))as NETO from facturas f
+
+select *, ROUND((f.MONTO * 0.21), 2) as IVA, (F.MONTO + ROUND((f.MONTO * 0.21), 2))as NETO,
+	FLOOR(F.MONTO + ROUND((f.MONTO * 0.21), 2))as REDONDEADO_A_FAVOR_DEL_CLIENTE from facturas f
+
+
+/*Integrador parte 2*/
+
+
+	select * from facturas f where YEAR(f.FECHA) = 2021
+
+
+	select * from facturas f where YEAR(f.FECHA) = 2021 and MONTH(f.fecha) in (3,4,5,6,7,8,9)
+
+
+	select * from facturas f where DAY(f.fecha) = 1
+
+	select f.*, DATEDIFF(CURDATE(), F.FECHA ) as DIAS_TRANSCURRIDOS from facturas f
+
+	select f.*, DATEDIFF(CURDATE(), f.FECHA ) as DIAS_TRANSCURRIDOS,
+		case
+			when DAYNAME(f.FECHA) like 'Monday' then 'Lunes'
+			when DAYNAME(f.FECHA) like 'Tuesday' then 'Martes'
+			when DAYNAME(f.FECHA) like 'Wednesday' then 'Miercoles'
+			when DAYNAME(f.FECHA) like 'Thursday' then 'Jueves'
+			when DAYNAME(f.FECHA) like 'Friday' then 'Viernes'
+			when DAYNAME(f.FECHA) like 'Saturday' then 'Sabado'
+			else 'Domingo'
+		end as DIA,
+		DAYOFYEAR(f.FECHA) as 'DIA_DEL_AÑO',
+		case
+	 		when DAYNAME(f.FECHA) like 'January' then 'Enero'
+			when DAYNAME(f.FECHA) like 'February' then 'Febreo'
+			when DAYNAME(f.FECHA) like 'March' then 'Marzo'
+			when DAYNAME(f.FECHA) like 'April' then 'Abril'
+			when DAYNAME(f.FECHA) like 'May' then 'Mayo'
+			when DAYNAME(f.FECHA) like 'June' then 'Junio'
+			when DAYNAME(f.FECHA) like 'July' then 'Julio'
+			when DAYNAME(f.FECHA) like 'August' then 'Agosto'
+			when DAYNAME(f.FECHA) like 'September' then 'Septiembre'
+			when DAYNAME(f.FECHA) like 'October' then 'Octubre'
+			when DAYNAME(f.FECHA) like 'November' then 'Noviembre'
+			else 'Diciembre'
+		end as MES,
+		ADDDATE(f.FECHA, INTERVAL 30 DAY) as PRIMER_VENCIMIENTO,
+		ADDDATE(f.FECHA, INTERVAL 2 MONTH) as SEGUNDO_VENCIMIENTO
+	from facturas f
+
