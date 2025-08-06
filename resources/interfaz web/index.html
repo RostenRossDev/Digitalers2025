@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>INDEX</title>
     <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body>
@@ -15,48 +16,65 @@
         <nav>
             <ul>
                 <li>
-                    <a href="#">Inicio</a>
+                    <a href="#servicios">Servicios</a>
                 </li>
-                <li><a href="#">Servicios</a></li>
-                <li><a href="#">Contacto</a></li>
+                <li>
+                    <a href="#contacto">Contacto</a>
+                </li>
+                <li>
+                    <a href="#contacto">Login</a>
+                </li>
             </ul>
         </nav>
     </header>
 
     <main>
-        <H1 class="coiny">Somos wwwapas</H1>
+        <section id="presentacion">
+            <section class="left">
 
-        <section>
-            <H2>Social media managers | creadoras de contenido</H2>
-            <P>
-                Nos encargamos de construir, gestionar y administrar la comunidad
-                online de tu marca, empresa o negocio <b>¡Creamos relaciones estables y
-                    duraderas con tus clientes!</b>
-            </P>
-        </section>
+                <section>
+                    <H1 class="coiny">Somos <span>wwwapas</span></H1>
+                    <p class="bg-yellow">Social media managers | creadoras de contenido</p>
+                </section>
 
-        <section>
-            <h2>¡Hola! Somos SOFI & JULIA,</h2>
-            <p>las social media managers, las creadoras de contenido, las
-                copywriters, las generadoras de leads, las diseñadoras, las
-                estrategas en marketing digital, las potenciadoras de ventas,
-                el posicionamiento de tu marca <b>¡Somos el complemento que
-                    necesitás para hacer crecer tu marca! ¡Somos wwwapas!</b>
-            </p>
-        </section>
+                <article>
+                    <P>
+                        Nos encargamos de construir, gestionar y administrar la comunidad
+                        online de tu marca, empresa o negocio <b>¡Creamos relaciones estables y
+                            duraderas con tus clientes!</b>
+                    </P>
+                </article>
 
-        <section>
-            <h2>GESTIONAMOS TUS REDES SOCIALES</h2>
-            <p>
-                La transformación digital no es solo para grandes compañías,
-                todas las empresas deben emprenderla cuanto antes y aquí
-                es donde podemos asistirte. Armamos estrategias a medida
-                para tu empresa, marca o producto <b>¡Aumentá tu presencia
-                    digital y generá nuevas ventas y contactos</b>
-            </p>
+                <article>
+                    <h2 class="bg-yellow">¡Hola! Somos SOFI & JULIA,</h2>
+                    <p>las social media managers, las creadoras de contenido, las
+                        copywriters, las generadoras de leads, las diseñadoras, las
+                        estrategas en marketing digital, las potenciadoras de ventas,
+                        el posicionamiento de tu marca <b>¡Somos el complemento que
+                            necesitás para hacer crecer tu marca! ¡Somos wwwapas!</b>
+                    </p>
+                </article>
+            </section>
+            <section class="rigth">
+                <img src="images/foto.png" width="687px" height="549px" alt="foto wwwapas">
+
+                <article>
+                    <h2 class="bg-yellow">GESTIONAMOS TUS REDES SOCIALES</h2>
+                    <p>
+                        La transformación digital no es solo para grandes compañías,
+                        todas las empresas deben emprenderla cuanto antes y aquí
+                        es donde podemos asistirte. Armamos estrategias a medida
+                        para tu empresa, marca o producto <b>¡Aumentá tu presencia
+                            digital y generá nuevas ventas y contactos</b>
+                    </p>
+                </article>
+            </section>
+
         </section>
-        <section>
+        <hr>
+        <section id="servicios">
             <h2>Servicios</h2>
+            <img src="images/img-servicios.png" width="552px" height="552px">
             <ol>
                 <li>
                     <p>Análisis de perfil (Benchmarking)</p>
@@ -78,18 +96,59 @@
                     <p>Diagramamos un calendario que se ajuste a los objetivos
                         de la empresa</p>
                 </li>
-                <li>
+                <li class="bg-yellow">
                     <p>¡Empezamos a comunicar!</p>
                 </li>
             </ol>
         </section>
+        <hr>
+        <section id="form">
+            <p id="contacto">
+                <b><span class="bg-black">¿Querés que nos contactemos con vos?</span></b>
+                <br /><br /><br /><span class="bg-yellow">Envianos tu consulta >></span>
+            </p>
+
+            <form>
+                <div>
+                    <label>Nomber <span class="c-red">*</span></label>
+                    <input type="text" width="535px" height="55px">
+                </div>
+
+                <div>
+                    <label>Email <span class="c-red">*</span></label>
+                    <input type="email" width="535px" height="55px">
+                </div>
+
+                <div>
+                    <label>Mensaje <span class="c-red">*</span></label>
+                    <textarea></textarea>
+                </div>
+
+                <div>
+                    <button class="btn-form">Enviar consulta</button>
+                    <button class="btn-form">Borrar</button>
+                </div>
+            </form>
+        </section>
     </main>
 
     <footer>
-        <p>
-            <b>¿Querés que nos contactemos con vos?</b>
-            <br /><br /><br /> tu consulta >>
-        </p>
+
+        <section class="footer-redes">
+            <p>redes <br>wwwapas</p>
+            <div>
+                <img src="images/instagram-icon.png" alt="instagram icon" class="social"></i>
+                <img src="images/dribbble-icon.png" alt="dribbble icon" class="social"></i>
+                <img src="images/linkedin-icon.png" alt="linkedin icon" class="social"></i>
+                <img src="images/facebook-icon.png" alt="facebook icon" class="social"></i>
+            </div>
+        </section>
+
+        <section class="footer-mailto">
+            <p class="coiny"><b>wwwpas</b></p>
+            <a href="mailto: rosten2016@gmail.com">wwwapas_sm@gmail.com</a>
+        </section>
+
     </footer>
 
 </body>

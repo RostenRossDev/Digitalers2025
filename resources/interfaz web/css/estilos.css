@@ -15,3 +15,65 @@ body{
 a{
     text-decoration:dashed green overline;
 }
+
+
+.footer-redes{
+    display: flex;
+    align-items: center; /* alinea verticalmente con el texto */
+}
+
+.footer-redes p{    
+    margin-left: 10%;
+    color: #808080;
+}
+
+.footer-redes div{
+    flex: 1; /* ocupa todo el espacio restante */
+    margin-left: 3.5%;
+    display: flex;
+    justify-content: space-around; /* reparte espacio proporcional */
+}
+
+.social{
+    width: 115px;
+    height: 106px;
+}
+
+.footer-mailto{
+    display: flex;
+    align-items: center; /* alinea verticalmente con el texto */
+}
+
+.footer-mailto p{
+    margin-inline: 10%;
+    font-size: 20px;   
+}
+
+.footer-mailto a{
+  font-size: 12px;   
+}
+
+.bg-black{
+        background-color: #000;
+        color: #fff;
+}
+
+.bg-yellow{
+    background-color: #FCEE21;
+}
+
+textarea{
+    width: 535px;
+    height: 173px;
+    resize: none; /* bloquea el cambio de tamaño */
+}
+
+.btn-form{
+    background-color: #000;
+    color: #fff;
+    padding: 7px 28px;
+}
+
+.c-red{
+    color: red;
+}
