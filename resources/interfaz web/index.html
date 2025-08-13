@@ -12,8 +12,9 @@
 <body>
 
     <header>
-        <h1 class="coiny">wwwwapas</h1>
+
         <nav>
+            <h1 class="coiny marging-h-10p">wwwwapas</h1>
             <ul>
                 <li>
                     <a href="#servicios">Servicios</a>
@@ -30,22 +31,27 @@
 
     <main>
         <section id="presentacion">
-            <section class="left">
+            <section class="flex marging-h-10p">
 
-                <section>
-                    <H1 class="coiny">Somos <span>wwwapas</span></H1>
-                    <p class="bg-yellow">Social media managers | creadoras de contenido</p>
+                <section class="padding-h-10 width-31p">
+                    <H1 class="font-rem2 line-height">somos <span
+                            class="font-rem4 coiny marging-t-10p-neg line-height">wwwapas</span></H1>
+                    <p class="bg-yellow marging-t-20-neg">Social media managers | creadoras de contenido</p>
+                    <article class="padding-h-10 marging-t-25">
+                        <P>
+                            Nos encargamos de construir, gestionar y administrar la comunidad
+                            online de tu marca, empresa o negocio <b>¡Creamos relaciones estables y
+                                duraderas con tus clientes!</b>
+                        </P>
+                    </article>
                 </section>
 
-                <article>
-                    <P>
-                        Nos encargamos de construir, gestionar y administrar la comunidad
-                        online de tu marca, empresa o negocio <b>¡Creamos relaciones estables y
-                            duraderas con tus clientes!</b>
-                    </P>
-                </article>
 
-                <article>
+                <img class="padding-h-10" src="images/foto.png" width="544px" height="475px" alt="foto wwwapas">
+
+            </section>
+            <section class="flex marging-h-10p marging-t-2">
+                <article class="padding-h-10  width-35p">
                     <h2 class="bg-yellow">¡Hola! Somos SOFI & JULIA,</h2>
                     <p>las social media managers, las creadoras de contenido, las
                         copywriters, las generadoras de leads, las diseñadoras, las
@@ -54,11 +60,10 @@
                             necesitás para hacer crecer tu marca! ¡Somos wwwapas!</b>
                     </p>
                 </article>
-            </section>
-            <section class="rigth">
-                <img src="images/foto.png" width="687px" height="549px" alt="foto wwwapas">
 
-                <article>
+
+
+                <article class="padding-h-10  width-35p">
                     <h2 class="bg-yellow">GESTIONAMOS TUS REDES SOCIALES</h2>
                     <p>
                         La transformación digital no es solo para grandes compañías,
@@ -71,62 +76,68 @@
             </section>
 
         </section>
-        <hr>
-        <section id="servicios">
-            <h2>Servicios</h2>
-            <img src="images/img-servicios.png" width="552px" height="552px">
-            <ol>
-                <li>
-                    <p>Análisis de perfil (Benchmarking)</p>
-                </li>
-                <li>
-                    <p>Revisión y activación de canales</p>
-                </li>
-                <li>
-                    <p>Gestión, creación y diseño de contenido</p>
-                </li>
-                <li>
-                    <p>Respuestas a mensajes y consultas</p>
-                </li>
-                <li>
-                    <p>Segmentación de promociones según el público objetivo
-                        de la pauta publicitaria</p>
-                </li>
-                <li>
-                    <p>Diagramamos un calendario que se ajuste a los objetivos
-                        de la empresa</p>
-                </li>
-                <li class="bg-yellow">
-                    <p>¡Empezamos a comunicar!</p>
-                </li>
-            </ol>
+        <hr class="marging-t-2 marging-h-10p">
+        <section id="servicios" class="marging-h-10p">
+
+            <img src="images/img-servicios.png" width="280px" height="280px">
+            <div>
+                <h2>SERVICIOS</h2>
+                <ol>
+                    <li>
+                        <p>Análisis de perfil (Benchmarking)</p>
+                    </li>
+                    <li>
+                        <p>Revisión y activación de canales</p>
+                    </li>
+                    <li>
+                        <p>Gestión, creación y diseño de contenido</p>
+                    </li>
+                    <li>
+                        <p>Respuestas a mensajes y consultas</p>
+                    </li>
+                    <li>
+                        <p>Segmentación de promociones según el público objetivo
+                            de la pauta publicitaria</p>
+                    </li>
+                    <li>
+                        <p>Diagramamos un calendario que se ajuste a los objetivos
+                            de la empresa</p>
+                    </li>
+                    <li class="bg-yellow blacky-2em">
+                        <p>¡Empezamos a comunicar!</p>
+                    </li>
+                </ol>
+            </div>
+
         </section>
-        <hr>
-        <section id="form">
+        <hr class="marging-h-10p">
+        <section id="section-form">
             <p id="contacto">
-                <b><span class="bg-black">¿Querés que nos contactemos con vos?</span></b>
-                <br /><br /><br /><span class="bg-yellow">Envianos tu consulta >></span>
+                <b><span class="bg-black fz-50">¿Querés que nos contactemos con vos?</span></b>
+                <br /><br /><br /><b><span class="bg-yellow fz-30">Envianos tu consulta >></span></b>
             </p>
 
-            <form>
+            <form id="form-contact" action="php/codigo.php" method="post">
                 <div>
-                    <label>Nomber <span class="c-red">*</span></label>
-                    <input type="text" width="535px" height="55px">
+                    <label>Nombre<span class="c-red">*</span></label>
+                    <input class="input-form" name="nombre" type="text" width="535px" height="55px" required
+                        placeholder="Juan García">
                 </div>
 
                 <div>
-                    <label>Email <span class="c-red">*</span></label>
-                    <input type="email" width="535px" height="55px">
+                    <label>Email<span class="c-red">*</span></label>
+                    <input class="input-form" name="email" type="email" width="535px" height="55px"
+                        placeholder="info@mimail.com" required>
                 </div>
 
                 <div>
                     <label>Mensaje <span class="c-red">*</span></label>
-                    <textarea></textarea>
+                    <textarea name="comentarios" required name="mensaje"></textarea>
                 </div>
 
-                <div>
+                <div class="flex">
                     <button class="btn-form">Enviar consulta</button>
-                    <button class="btn-form">Borrar</button>
+                    <input type="reset" class="btn-form" value="Borrar" />
                 </div>
             </form>
         </section>
@@ -137,10 +148,22 @@
         <section class="footer-redes">
             <p>redes <br>wwwapas</p>
             <div>
-                <img src="images/instagram-icon.png" alt="instagram icon" class="social"></i>
-                <img src="images/dribbble-icon.png" alt="dribbble icon" class="social"></i>
-                <img src="images/linkedin-icon.png" alt="linkedin icon" class="social"></i>
-                <img src="images/facebook-icon.png" alt="facebook icon" class="social"></i>
+                <div>
+                    <a href="www.instagram.com"><img src="images/instagram-icon.png" alt="instagram icon"
+                            class="social"></img></a>
+                </div>
+                <div>
+                    <a href="www.dribbble.com"><img src="images/dribbble-icon.png" alt="dribbble icon"
+                            class="social"></img></a>
+                </div>
+                <div>
+                    <a href="www.linkedin.com"><img src="images/linkedin-icon.png" alt="linkedin icon"
+                            class="social"></img></a>
+                </div>
+                <div>
+                    <a href="www.facebook.com"><img src="images/facebook-icon.png" alt="facebook icon"
+                            class="social"></img></a>
+                </div>
             </div>
         </section>
 

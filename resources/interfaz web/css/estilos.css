@@ -2,78 +2,241 @@
 @import url('https://fonts.googleapis.com/css2?family=Coiny&family=Roboto:wght@400;700&display=swap');
 /* @import url('https://fonts.googleapis.com/css2?family=Coiny&family=Roboto:ital,wght@400..700;400..700&display=swap'); */
 
-body{
+body {
     margin: 0px;
     padding: 0px;
     font-family: Roboto;
+    font-size: 15px;
 }
 
-.coiny{
+h1 {
+    font-weight: lighter;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+nav ul {
+    width: 50%;
+    display: inherit;
+    justify-content: space-evenly;
+    list-style: none;
+}
+
+
+
+.coiny {
     font-family: Coiny;
 }
 
-a{
-    text-decoration:dashed green overline;
+a {
+    text-decoration: none;
+    color: black;
 }
 
+a:visited {
+    color: black;
+    /* Igual que el normal */
+    text-decoration: none;
+}
 
-.footer-redes{
+a:hover {
+    text-decoration: solid rgb(162, 8, 252) underline;
+}
+
+footer {
+    margin-top: 100px;
+}
+
+.footer-redes {
     display: flex;
-    align-items: center; /* alinea verticalmente con el texto */
+    align-items: center;
+    /* alinea verticalmente con el texto */
 }
 
-.footer-redes p{    
+.footer-redes p {
     margin-left: 10%;
     color: #808080;
 }
 
-.footer-redes div{
-    flex: 1; /* ocupa todo el espacio restante */
-    margin-left: 3.5%;
+.footer-redes div {
+    flex: 1;
+    /* ocupa todo el espacio restante */
+    /*margin-left: 3.5%;*/
     display: flex;
-    justify-content: space-around; /* reparte espacio proporcional */
+    justify-content: space-around;
+    /* reparte espacio proporcional */
 }
 
-.social{
-    width: 115px;
-    height: 106px;
+.social {
+    width: 100px;
+    height: 91px;
 }
 
-.footer-mailto{
+.footer-mailto {
     display: flex;
-    align-items: center; /* alinea verticalmente con el texto */
+    align-items: center;
+    /* alinea verticalmente con el texto */
 }
 
-.footer-mailto p{
+.footer-mailto p {
     margin-inline: 10%;
-    font-size: 20px;   
+    font-size: 20px;
 }
 
-.footer-mailto a{
-  font-size: 12px;   
+.footer-mailto a {
+    font-size: 12px;
 }
 
-.bg-black{
-        background-color: #000;
-        color: #fff;
+.bg-black {
+    background-color: #000;
+    color: #fff;
 }
 
-.bg-yellow{
+.bg-yellow {
     background-color: #FCEE21;
 }
 
-textarea{
+textarea {
     width: 535px;
     height: 173px;
-    resize: none; /* bloquea el cambio de tamaño */
+    resize: none;
+    /* bloquea el cambio de tamaño */
 }
 
-.btn-form{
+.btn-form {
     background-color: #000;
     color: #fff;
     padding: 7px 28px;
 }
 
-.c-red{
+.c-red {
     color: red;
+}
+
+ol {
+    font-size: 1em;
+    font-weight: 400;
+    list-style-position: inside;
+}
+
+.blacky-2em {
+    font-size: 1.5em;
+    font-weight: 700;
+}
+
+#section-form {
+    display: flex;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 3%;
+    justify-content: space-between;
+    /* reparte espacio proporcional */
+}
+
+#form-contact div {
+    margin-top: 2.5%;
+    width: 385px;
+}
+
+#form-contact div input {
+    height: 27px;
+}
+
+textarea {
+    width: 385px;
+    height: 175px;
+}
+
+label {
+    display: block;
+    font-weight: 600;
+}
+
+.input-form {
+    width: 385px;
+}
+
+.flex {
+    display: flex;
+    justify-content: space-between;
+}
+
+#contacto {
+    width: 40%;
+}
+
+.fz-50 {
+    font-size: 35px;
+}
+
+.fz-30 {
+    font-size: 20px;
+}
+
+
+
+.padding-h-10 {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.marging-h-10p {
+    margin-inline: 10%;
+}
+
+
+.width-31p {
+    width: 31%;
+}
+
+.width-35p {
+    width: 35%;
+}
+
+.font-rem4 {
+    font-size: 4rem;
+}
+
+.font-rem2 {
+    font-size: 2.2rem;
+}
+
+.marging-t-10p-neg {
+    margin-top: -10%;
+}
+
+.marging-t-20-neg {
+    margin-top: -20px;
+}
+
+.marging-t-25 {
+    margin-top: 25%;
+}
+
+.marging-t-2 {
+    margin-top: 2%;
+}
+
+
+.line-height {
+    line-height: 1;
+}
+
+#servicios {
+    display: flex;
+    justify-content: space-between;
+}
+
+ol {
+    padding-left: 0%;
+}
+
+li {
+    list-style-position: outside;
+    width: 54%;
 }
