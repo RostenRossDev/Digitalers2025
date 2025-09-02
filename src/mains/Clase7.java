@@ -54,7 +54,7 @@ public class Clase7 {
 //
 //        FiguraGeometrica figura = new FiguraGeometrica();
 //
-//        Object obj = new Object(); // objeto mas simple de todos, es del cual todos los objetos heredan sin excepción
+        Object obj = new Object(); // objeto mas simple de todos, es del cual todos los objetos heredan sin excepción
 //
 
         System.out.println("Ingrese el dividor: ");
@@ -100,5 +100,6 @@ public class Clase7 {
         }finally {
             System.out.println("Simpre me ejecuto, no importa que suceda, generalmente soy utilizado para liberar recursos");
         }
+
     }
 }

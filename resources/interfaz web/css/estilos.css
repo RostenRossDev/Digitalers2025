@@ -232,6 +232,16 @@ label {
     justify-content: space-between;
 }
 
+#servicios img {
+    margin-bottom: 3em;
+    margin-top: 3em;
+}
+
+#servicios div{
+    margin-bottom: 2.3em;
+    margin-top: 1.5em;
+}
+
 ol {
     padding-left: 0%;
 }
