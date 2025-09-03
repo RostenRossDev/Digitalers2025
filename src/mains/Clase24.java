@@ -1,7 +1,6 @@
 package mains;
 
-import mains.clase24.DosAtributos;
-import mains.clase24.GenericaDosAtributos;
+import mains.clase24.*;
 import mains.enums.ColoresEnum;
 import mains.enums.ColoresEnumMejorado;
 
@@ -126,6 +125,10 @@ public class Clase24 {
         String priemrApellido2 = apellidos.peek(); //Peek sirve para lo mismo que element pero en caso de
         // que la coleccion este vacia estaretorna null
 
+        String priemrApellido3 = apellidos.poll(); // Poll me devuelve el primer elemento de la cola
+        //pero tambien lo elimina de la misma.
+
+        System.out.println("\ncola: " + apellidos);
 
         Queue<Integer> edades = new PriorityQueue();
 
@@ -133,5 +136,96 @@ public class Clase24 {
         //miEdad2 = edades.element();
         //int miEdad3 = edades.peek();
 
+
+        // cola de prioridad
+
+
+        PriorityQueue<Tarea> colaTareas = new PriorityQueue<>();
+
+        // Agregar tareas con diferentes prioridades
+        colaTareas.add(new Tarea("Hacer informe", 2));
+        colaTareas.add(new Tarea("Reunión urgente", 1));
+        colaTareas.add(new Tarea("Leer emails", 3));
+        colaTareas.add(new Tarea("Llamar a cliente", 1));
+
+        System.out.println("Tareas procesadas por orden de prioridad:");
+        while (!colaTareas.isEmpty()) {
+            System.out.println("• " + colaTareas.poll());
+        }
+
+
+        //Pilas y colas en una sola estructura
+
+        Deque<String>  pila = new ArrayDeque<>();
+
+
+        Map<String, Integer> nobmreEdades = new HashMap<>();
+        nobmreEdades.put("yo", 2);
+        nobmreEdades.put("y1", 423);
+        nobmreEdades.put("ya", 12);
+        nobmreEdades.put("yi", 1);
+        nobmreEdades.put("yo", 5);
+        nobmreEdades.put("asdas", 15);
+
+        System.out.println("mi valor es: " + nobmreEdades.get("yo"));
+        System.out.println("tengo elementos: " + nobmreEdades.size());
+        System.out.println("contiene clave 'ya'? : " + nobmreEdades.containsKey("ya"));
+        System.out.println("contiene clave 'yo'? : " + nobmreEdades.containsKey("yo"));
+        System.out.println("Todos los valores de mi Map: " + nobmreEdades.values());
+        System.out.println("Todos las key de mi Map: " + nobmreEdades.keySet());
+
+        Map<String, Integer> nobmreEdadesLinkeados = new LinkedHashMap<>();
+        SortedMap<String, Integer> asdas;
+
+        TreeMap adas;
+
+
+        // usando iterador en mapas
+
+        Iterator<String> clavesIterador = nobmreEdades.keySet().iterator();
+
+        while (clavesIterador.hasNext()){
+            String claveTemporal = clavesIterador.next();
+            System.out.println("El valor de la clave: " + claveTemporal + " ,Es : " + nobmreEdades.get(claveTemporal));
+        }
+
+
+        Nodo<String>  nodo1 = new Nodo<>("Nestor");
+        Nodo<String>  nodo2 = new Nodo<>("Matias");
+        nodo1.setSiguiente(nodo2);
+
+        Nodo<String>  nodo3 = new Nodo<>("Cristina");
+        nodo2.setSiguiente(nodo3);
+
+        Nodo<String>  nodo4 = new Nodo<>("Marcos");
+        nodo3.setSiguiente(nodo4);
+
+        Nodo<String> nodoDeFin = new Nodo<>(null);
+        nodo4.setSiguiente(nodoDeFin);
+
+        Nodo<String> actual = nodo1;
+        while (actual.getSiguiente() != null ){
+            System.out.println("Nombre: " + actual.getValor());
+            actual = actual.getSiguiente();
+        }
+
+
+        Lista<String> listaDeNombres = new Lista<>();
+        System.out.println("Mi lista de nombres tiene " + listaDeNombres.getCantidad() + " elementos");
+
+        listaDeNombres.agregarElemento(new Nodo<String>("Matilde"));
+        listaDeNombres.agregarElemento(new Nodo<String>("Jose"));
+        listaDeNombres.agregarElemento(new Nodo<String>("Ramon"));
+        listaDeNombres.agregarElemento(new Nodo<String>("Coffee"));
+        listaDeNombres.agregarElemento(new Nodo<String>("Blue"));
+
+        System.out.println("MI lista: " + listaDeNombres);
+
+        listaDeNombres.eliminarElemento(2);
+
+        System.out.println("MI lista actualizada: " + listaDeNombres);
+
     }
+
+
 }
