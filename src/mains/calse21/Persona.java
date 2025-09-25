@@ -31,6 +31,10 @@ public class Persona {
             return estaVivo;
     }
 
+    public void setEstaVivo(Boolean estaVivo) {
+        this.estaVivo = estaVivo;
+    }
+
     @Override
     public String toString() {
         return "Persona{" +
